@@ -1,11 +1,15 @@
 {
   "name": "espi-birdhouse",
   "version": "0.0.1",
-  "description": "IOT Birdhouse",
+  "description": "ESPI IOT Birdhouse",
+  "engines": {
+    "node": "5.4.1"
+  },
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "nodemon index"
+    "watch": "nodemon index",
+    "start": "node index.js"
   },
   "author": "",
   "license": "ISC",
