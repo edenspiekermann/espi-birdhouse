@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<head>
+  <title>Pusher Test</title>
+  <script src="https://js.pusher.com/3.0/pusher.min.js"></script>
+  <script>
+    // Enable pusher logging - don't include this in production
+    Pusher.log = function(message) {
+      if (window.console && window.console.log) {
+        window.console.log(message);
+      }
+    };
+
+    var pusher = new Pusher('18bba7435bddbeeb7939', {
+      encrypted: true
+    });
+
+    var channel = pusher.subscribe('bird-house');
+    channel.bind('ping', function(data) {
+      Pusher.log(data.message);
+    });
+  </script>
+</head>
