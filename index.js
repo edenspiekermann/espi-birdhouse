@@ -6,10 +6,10 @@ var express = require('express');
 var app = express();
 var port = process.env.PORT || 3000;
 
-// helpers
-var weather = require('./helpers/weather');
-var timezone = require('./helpers/timezone')
-var pusher = require('./helpers/pusher')
+// other imports
+var weather = require('./lib/weather');
+var timezone = require('./lib/timezone')
+var pusher = require('./lib/pusher')
 
 app.get('/ping', function (req, res) {
   pusher.trigger('bird-house', 'ping', {
