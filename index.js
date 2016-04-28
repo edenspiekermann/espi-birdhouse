@@ -1,13 +1,21 @@
+// load env file
+require('dotenv').config();
+
+// server setup
 var express = require('express');
 var app = express();
+var port = process.env.PORT || 3000;
+
+// helpers
 var getWeather = require('./helpers/weather');
 
+// pusher setup
 var Pusher = require('pusher');
 
 var pusher = new Pusher({
-  appId: '201919',
-  key: '18bba7435bddbeeb7939',
-  secret: '8308a4f67139666a8b4b',
+  appId: process.env.PUSHER_APP_ID,
+  key: process.env.PUSHER_KEY,
+  secret: process.env.PUSHER_SECRET,
   encrypted: true
 });
 
@@ -32,6 +40,8 @@ app.get('/weather/:location', function (req, res, next) {
   });
 });
 
+// static files
+
 app.use(express.static('public'));
 
 
@@ -41,7 +51,9 @@ app.use(function(err, req, res, next) {
   res.status(500).send('Something broke!');
 });
 
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
+// start the server
+
+app.listen(port, function () {
+  console.log('Example app listening on port ' + port);
 });
 

@@ -6,3 +6,5 @@ node_modules
 
 # Environment files
 .env
+!sample.env
+.nvmrc
