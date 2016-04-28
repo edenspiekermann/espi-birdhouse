@@ -20,6 +20,7 @@
     "moment-timezone": "^0.5.3",
     "nodemon": "^1.9.1",
     "pusher": "^1.2.1",
+    "timezoner": "^0.1.9",
     "weather-js": "^1.0.2"
   }
 }

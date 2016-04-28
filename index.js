@@ -7,6 +7,8 @@ var app = express();
 var port = process.env.PORT || 3000;
 
 // helpers
+var weather = require('./helpers/weather');
+var timezone = require('./helpers/timezone')
 var pusher = require('./helpers/pusher')
 
 app.get('/ping', function (req, res) {
@@ -19,9 +21,16 @@ app.get('/ping', function (req, res) {
 app.get('/weather/:location', function (req, res, next) {
   var location = req.params.location;
   console.log('getting weather for ', location);
-  return getWeather(location).then(function (data) {
+  return weather(location).then(function (data) {
     if(data.length) {
-      res.send(data[0]);
+      var city = data[0];
+      var location = city.location;
+      return timezone(location.lat, location.long)
+        .then(function (result) {
+          var timezoneInfo = {timezone: result};
+          var cityInfo = Object.assign({}, city, timezoneInfo);
+          res.send(cityInfo);
+        });
     } else {
       res.status(500).send('Could not load weather for ' + location);
     }
@@ -44,6 +53,6 @@ app.use(function(err, req, res, next) {
 // start the server
 
 app.listen(port, function () {
-  console.log('Example app listening on port ' + port);
+  console.log('Birdhouse server listening on port ' + port);
 });
 
