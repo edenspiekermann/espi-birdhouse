@@ -7,17 +7,7 @@ var app = express();
 var port = process.env.PORT || 3000;
 
 // helpers
-var getWeather = require('./helpers/weather');
-
-// pusher setup
-var Pusher = require('pusher');
-
-var pusher = new Pusher({
-  appId: process.env.PUSHER_APP_ID,
-  key: process.env.PUSHER_KEY,
-  secret: process.env.PUSHER_SECRET,
-  encrypted: true
-});
+var pusher = require('./helpers/pusher')
 
 app.get('/ping', function (req, res) {
   pusher.trigger('bird-house', 'ping', {
