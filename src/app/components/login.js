@@ -57,7 +57,7 @@ class Login extends React.Component {
   render () {
     return (
       <div class="login-container" style={styles.container}>
-        <h1>Connect your bird house</h1>
+        <h3>Connect your bird house</h3>
 
         <div>
           <TextField

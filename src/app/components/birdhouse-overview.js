@@ -55,14 +55,14 @@ class BirdhouseOverview extends React.Component {
 
 
       return (
-        <TableRow>
-          <TableRowColumn>{name}</TableRowColumn>
-          <TableRowColumn>{location}</TableRowColumn>
-          <TableRowColumn>{skyText}, {temperature}°C</TableRowColumn>
-          <TableRowColumn>{localTime}</TableRowColumn>
-          <TableRowColumn>{time}</TableRowColumn>
 
-        </TableRow>
+        <tr>
+          <td>{name}</td>
+          <td>{location}</td>
+          <td>{skyText}, {temperature}°C</td>
+          <td>{localTime}</td>
+          <td>{time}</td>
+        </tr>
         );
     });
   }
@@ -71,22 +71,21 @@ class BirdhouseOverview extends React.Component {
     let users = this.state.users;
     const userRows = this.renderUsers(users);
     return (
-      <Card>
 
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHeaderColumn>Name</TableHeaderColumn>
-              <TableHeaderColumn>Location</TableHeaderColumn>
-              <TableHeaderColumn>Weather</TableHeaderColumn>
-              <TableHeaderColumn>Local Time</TableHeaderColumn>
-              <TableHeaderColumn>Your Time</TableHeaderColumn>
-            </TableRow>
-          </TableHeader>
-          <TableBody children={userRows}>
-          </TableBody>
-        </Table>
-      </Card>
+      <table>
+        <thead>
+        <tr>
+          <th>Birdhouse</th>
+          <th>Location</th>
+          <th>Weather</th>
+          <th>Local Time</th>
+          <th>Your Time</th>
+        </tr>
+        </thead>
+        <tbody>
+          {userRows}
+        </tbody>
+      </table>
     );
   }
 }

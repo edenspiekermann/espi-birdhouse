@@ -26,7 +26,12 @@ class Main extends React.Component {
       <MuiThemeProvider muiTheme={muiTheme}>
         <div>
           <Login />
-          <BirdhouseOverview />
+
+          <div class="past">
+            <h3>Currently available locations</h3>
+            <BirdhouseOverview />
+          </div>
+
         </div>
       </MuiThemeProvider>
     );
