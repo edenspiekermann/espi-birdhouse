@@ -21,14 +21,14 @@ class Login extends React.Component {
   render () {
     return (
       <div className="login-container">
-        <h3>Connect your bird house</h3>
+        <h3>Add your own birdhouse</h3>
 
         <div>
           <TextField
             ref="name"
             id="name"
-            hintText="Name of your bird house"
-            floatingLabelText="Name of your bird house"
+            hintText="Name of your birdhouse"
+            floatingLabelText="Name of your birdhouse"
           />
         </div>
         <div>
