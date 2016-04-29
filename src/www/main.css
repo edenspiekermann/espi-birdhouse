@@ -62,6 +62,10 @@ img {
   color: #fff;
 }
 
+.logo {
+  margin-bottom: 1em
+}
+
 h1 {
   font-weight: 100;
   font-size: 5em;
