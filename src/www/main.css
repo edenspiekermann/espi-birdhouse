@@ -1,8 +1,204 @@
+@font-face {
+    font-family: 'RealText';
+    src: url("./fonts/RealTextWebPro.woff") format("woff");
+    font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility
+}
+
+@font-face {
+    font-family: 'RealText';
+    src: url("./fonts/RealTextWebPro-Light.woff") format("woff");
+    font-style: normal;
+    font-weight: 100;
+    text-rendering: optimizeLegibility
+}
+
+@font-face {
+    font-family: 'RealText';
+    src: url("./fonts/RealTextWebPro-Demibold.woff") format("woff");
+    font-style: normal;
+    font-weight: 700;
+    text-rendering: optimizeLegibility
+}
+
+* , * :before, * :after {
+    border: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup,
+main, nav, section, summary {
+    display: block
+}
+
 html {
-  font-family: 'Roboto', sans-serif;
+  color: black;
+  font: normal 125% / 1.4 'RealText', sans;;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
-  font-size: 13px;
-  line-height: 20px;
+  line-height: 1.4;
+}
+
+h1, h2, h3, h4 {
+  line-height: 1;
+}
+
+img {
+    display: block;
+    max-width: 100%
+}
+
+.header, .current, .past {
+  padding: 2em;
+}
+
+.header {
+  background-color: rgb(253, 65, 75);
+  color: #fff;
+}
+
+h1 {
+  font-weight: 100;
+  font-size: 5em;
+}
+
+h2 {
+  font-weight: 700;
+  font-size: 2.5em;
+}
+
+h3 {
+  font-weight: 100;
+  color: rgb(253, 65, 75);
+  font-size: 2em;
+  margin-bottom: 0.5em;
+}
+
+.status {
+  display: block;
+}
+
+.current {
+  overflow: hidden;
+}
+
+.current__status {
+  height: 150px;
+  display: flex;
+  align-items: center; /* align vertical */
+}
+
+.bird {
+  width: 150px;
+  height: 150px;
+  border-radius: 100px;
+  float: left;
+  margin-right: 2em;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+/* Zebra striping */
+tr:nth-of-type(odd) {
+  background: rgba(55, 47, 84, 0.1);
+}
+th {
+  color: rgba(55, 47, 84, 0.66);
+  background: white;
+  font-weight: 700;
+}
+td, th {
+  padding: 6px;
+  /* border: 1px solid rgb(150, 147, 165);*/
+  text-align: left;
+}
+
+/*
+Max width before this PARTICULAR table gets nasty
+This query will take effect for any screen smaller than 760px
+and also iPads specifically.
+*/
+@media
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+  html {
+    font-size: 100%;
+  }
+
+  h1 {
+    font-size: 3em;
+  }
+
+  .current {
+    text-align: center;
+  }
+
+  .bird {
+    float: none;
+    display: inline-block;
+    margin: 0;
+  }
+
+  .current__status {
+    height: auto;
+    padding-top: 1em;
+    display: block;
+  }
+
+  /* Force table to not be like tables anymore */
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+
+  /* Hide table headers (but not display: none;, for accessibility) */
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  td {
+    /* Behave  like a "row" */
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
+  }
+
+  tr {
+    margin-bottom: 2em;
+  }
+
+  tr:nth-of-type(odd) td {
+    border-bottom: 1px solid #fff;
+  }
+
+  td:before {
+    /* Now like a table header */
+    position: absolute;
+    /* Top/left values mimic padding */
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    color: rgba(55, 47, 84, 0.66);
+  }
+
+  /*
+  Label the data
+  */
+  td:nth-of-type(1):before { content: "Birdhouse"; }
+  td:nth-of-type(2):before { content: "Location"; }
+  td:nth-of-type(3):before { content: "Weather"; }
+  td:nth-of-type(4):before { content: "Local Time"; }
+  td:nth-of-type(5):before { content: "Your Time"; }
 }
