@@ -4,16 +4,32 @@ require('dotenv').config();
 // server setup
 var express = require('express');
 var app = express();
+var bodyParser = require('body-parser');
 var port = process.env.PORT || 3000;
 
 // other imports
 var weather = require('./lib/weather');
-var timezone = require('./lib/timezone')
-var pusher = require('./lib/pusher')
+var timezone = require('./lib/timezone');
+var pubnub = require('./lib/pubnub');
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// static files
+app.use(express.static('public'));
+
+
 
 app.get('/ping', function (req, res) {
-  pusher.trigger('bird-house', 'ping', {
-    "message": "hello world"
+  // pusher.trigger('bird-house', 'ping', {
+  //   "message": "hello world"
+  // });
+  pubnub.publish({
+    channel : 'espi-birdhouse',
+    message : 'Hello from the PubNub Javascript SDK!',
+    callback : function(m){
+      console.log(m)
+    }
   });
   res.send('Message sent');
 });
@@ -39,9 +55,7 @@ app.get('/weather/:location', function (req, res, next) {
   });
 });
 
-// static files
 
-app.use(express.static('public'));
 
 
 // Error handler
