@@ -1,5 +1,6 @@
 import React from 'react';
 import pubnubClient from '../helpers/pubnub-client';
+import _ from 'lodash';
 
 
 class BirdStatus extends React.Component {
@@ -34,12 +35,23 @@ class BirdStatus extends React.Component {
 
   render() {
     const {name, weather, location} = this.state.location;
+    let defaultMessages = [
+      "flight",
+      "town grabbing some food",
+      "an airplane and feeling lazy",
+      "a sleepy mood",
+      "in your kitchen stealing your food"
+    ];
+    let status = _.sample(defaultMessages);
+    if(name && location) {
+      status = location + ' chilling at ' + name;
+    }
     return (
       <div className="current">
       <img src="images/flying.jpg" className="bird"/>
       <div className="current__status">
         <h2>The bird is currently
-        <span className="status">in {location} chilling at {name}</span></h2>
+        <span className="status">in {status}</span></h2>
       </div>
     </div>
     );
