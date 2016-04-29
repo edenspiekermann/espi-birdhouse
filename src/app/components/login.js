@@ -37,9 +37,9 @@ class Login extends React.Component {
             floatingLabelText="Your location"
           />
         </div>
+        <br />
         <RaisedButton
           label="Connect"
-          primary={true}
           onTouchTap={this.handleLogin}
          />
       </div>
