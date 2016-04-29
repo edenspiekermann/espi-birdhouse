@@ -16,7 +16,7 @@ class BirdhouseOverview extends React.Component {
   }
 
   renderUsers(users) {
-    return users.map((user) => {
+    return users.map((user, index) => {
       const name = user.state.name;
       const location = user.state.location;
       const temperature = user.state.weather.current.temperature;
@@ -28,7 +28,7 @@ class BirdhouseOverview extends React.Component {
 
       return (
 
-        <tr>
+        <tr key={"row" + index}>
           <td>{name}</td>
           <td>{location}</td>
           <td>{skyText}, {temperature}°C</td>
