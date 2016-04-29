@@ -15,7 +15,8 @@
     "server": "nodemon index",
     "dev": "webpack --watch --config webpack-dev-server.config.js --progress --inline --colors & npm run server",
     "build": "webpack --config webpack-production.config.js --progress --colors",
-    "start": "node index.js"
+    "start": "node index.js",
+    "heroku-postbuild": "npm run build"
   },
   "author": "",
   "license": "ISC",
