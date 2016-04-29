@@ -40,20 +40,29 @@ class Main extends React.Component {
     }
   }
 
+  handleLogoff() {
+    this.disconnect();
+  }
+
   connect(state) {
     pubnubClient.subscribe({
       channel: 'espi-birdhouse',
       message: function(m){
        console.log(m);
       },
-
-      presence: function(m) {
-       console.log(m);
-      },
-
+      presence: this.updateUserList.bind(this),
       state: state
     });
+
     this.setState({connected: true})
+    setTimeout(this.updateUserList.bind(this), 1000);
+  }
+
+  disconnect() {
+    pubnubClient.unsubscribe({
+      channel: 'espi-birdhouse',
+    });
+    this.setState({connected: false})
     setTimeout(this.updateUserList.bind(this), 1000);
   }
 
@@ -92,7 +101,10 @@ class Main extends React.Component {
 
           { !connected ?
 
-            <Login onLogin={this.handleLogin} />
+            <Login
+              onLogin={this.handleLogin}
+              onLogoff={this.handleLogoff}
+             />
             : null
           }
         </div>

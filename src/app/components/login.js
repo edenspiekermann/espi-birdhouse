@@ -17,6 +17,10 @@ class Login extends React.Component {
     this.props.onLogin(name, location);
   }
 
+  handleLogoff() {
+    this.props.onLogoff();
+  }
+
 
   render () {
     return (
@@ -42,6 +46,11 @@ class Login extends React.Component {
           label="Connect"
           onTouchTap={this.handleLogin}
          />
+        <br /><br />
+        <RaisedButton
+            label="Disconnect"
+            onTouchTap={this.handleLogoff}
+        />
       </div>
     );
   }
