@@ -7,6 +7,9 @@ var app = express();
 var bodyParser = require('body-parser');
 var port = process.env.PORT || 3000;
 
+var bird = require('./lib/bird');
+
+
 // other imports
 var weather = require('./lib/weather');
 var timezone = require('./lib/timezone');
@@ -26,7 +29,7 @@ app.get('/ping', function (req, res) {
   // });
   pubnub.publish({
     channel : 'espi-birdhouse',
-    message : 'Hello from the PubNub Javascript SDK!',
+    message : 'Pinged the bird',
     callback : function(m){
       console.log(m)
     }
@@ -70,3 +73,6 @@ app.listen(port, function () {
   console.log('Birdhouse server listening on port ' + port);
 });
 
+// let the bird fly
+bird.connect();
+bird.start();

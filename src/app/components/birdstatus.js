@@ -1,14 +1,45 @@
 import React from 'react';
+import pubnubClient from '../helpers/pubnub-client';
+
 
 class BirdStatus extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+
+    this.handleMessage = this.handleMessage.bind(this);
+
+    this.state = {
+      location: {}
+    };
+  }
+
+  componentWillMount() {
+    pubnubClient.subscribe({
+      channel : 'espi-birdhouse',
+      message : this.handleMessage,
+      error : function (error) {
+        // Handle error here
+        console.log(JSON.stringify(error));
+      }
+    });
+  }
+
+  handleMessage(message) {
+    console.log(message);
+    if(message.type && message.type === "change:location") {
+      let location = message.location.state;
+      this.setState({location: location});
+    }
+  }
 
   render() {
+    const {name, weather, location} = this.state.location;
     return (
       <div className="current">
       <img src="images/flying.jpg" className="bird"/>
       <div className="current__status">
         <h2>The bird is currently
-        <span className="status">in flight</span></h2>
+        <span className="status">in {location} chilling at {name}</span></h2>
       </div>
     </div>
     );
