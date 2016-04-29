@@ -13,34 +13,6 @@ import moment from 'moment';
 class BirdhouseOverview extends React.Component {
   constructor(props, context) {
     super(props, context);
-
-    this.getPresentUsers = this.getPresentUsers.bind(this);
-    this.state = {
-      users: [],
-    };
-  }
-
-  componentDidMount() {
-    let self = this;
-    pubnubClient.here_now({
-      channel: 'espi-birdhouse',
-      state: true,
-      callback: (data) => {
-        console.log(data.uuids);
-        self.getPresentUsers(data);
-      }
-    });
-  }
-
-  getPresentUsers(data) {
-    let users = data.uuids.filter((item) => {
-      return item.state;
-    });
-    this.setState({users: users});
-  }
-
-  getUserLocalTime(timezone) {
-
   }
 
   renderUsers(users) {
@@ -68,7 +40,7 @@ class BirdhouseOverview extends React.Component {
   }
 
   render() {
-    let users = this.state.users;
+    let users = this.props.users;
     const userRows = this.renderUsers(users);
     return (
 

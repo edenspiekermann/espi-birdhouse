@@ -21,38 +21,9 @@ class Login extends React.Component {
   handleLogin() {
     let name = this.refs.name.input.value;
     let location = this.refs.location.input.value;
-    if(name && location) {
-      fetch('/weather/' + location)
-      .then((response) => {
-        return response.json();
-      })
-      .then((weatherData) => {
-        var state = {
-          name: name,
-          location: location,
-          weather: weatherData
-        }
-        this.connect(state);
-      })
-
-    }
+    this.props.onLogin(name, location);
   }
 
-  connect(state) {
-    pubnubClient.subscribe({
-      channel: 'espi-birdhouse',
-      noheresync: true,
-      message: function(m){
-       console.log(m);
-      },
-
-      presence: function(m) {
-       console.log(m);
-      },
-
-      state: state
-    });
-  }
 
   render () {
     return (
