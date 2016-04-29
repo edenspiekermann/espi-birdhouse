@@ -43,7 +43,6 @@ class Main extends React.Component {
   connect(state) {
     pubnubClient.subscribe({
       channel: 'espi-birdhouse',
-      noheresync: true,
       message: function(m){
        console.log(m);
       },
