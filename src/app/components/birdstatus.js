@@ -43,12 +43,16 @@ class BirdStatus extends React.Component {
       "your kitchen stealing your food"
     ];
     let status = _.sample(defaultMessages);
+    let image = <img src="images/flying.jpg" className="bird"/>
+
     if(name && location) {
       status = location + ' chilling at ' + name;
+      image = <img src="images/sitting.jpg" className="bird"/>
+
     }
     return (
       <div className="current">
-      <img src="images/flying.jpg" className="bird"/>
+      {image}
       <div className="current__status">
         <h2>The bird is currently
         <span className="status">in {status}</span></h2>
