@@ -6,6 +6,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Login from './login';
 import BirdhouseOverview from './birdhouse-overview';
+import BirdStatus from './birdstatus';
 import pubnubClient from '../helpers/pubnub-client';
 import axios from 'axios';
 
@@ -87,10 +88,9 @@ class Main extends React.Component {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div>
-          <div className="past">
-            <h3>Currently available locations</h3>
-            <BirdhouseOverview users={users}  />
-          </div>
+          <BirdStatus />
+          <BirdhouseOverview users={users}  />
+
           { !connected ?
 
             <Login onLogin={this.handleLogin} />
