@@ -87,16 +87,15 @@ class Main extends React.Component {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div>
+          <div className="past">
+            <h3>Currently available locations</h3>
+            <BirdhouseOverview users={users}  />
+          </div>
           { !connected ?
 
             <Login onLogin={this.handleLogin} />
             : null
           }
-          <div class="past">
-            <h3>Currently available locations</h3>
-            <BirdhouseOverview users={users}  />
-          </div>
-
         </div>
       </MuiThemeProvider>
     );

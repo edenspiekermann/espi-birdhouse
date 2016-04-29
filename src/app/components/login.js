@@ -4,13 +4,6 @@ import RaisedButton from 'material-ui/RaisedButton';
 import PubNub from 'pubnub';
 import pubnubClient from '../helpers/pubnub-client';
 
-const styles = {
-  container: {
-    textAlign: 'center',
-    paddingTop: 50,
-    paddingBottom: 50
-  },
-};
 
 class Login extends React.Component {
   constructor(props, context) {
@@ -27,7 +20,7 @@ class Login extends React.Component {
 
   render () {
     return (
-      <div class="login-container" style={styles.container}>
+      <div className="login-container">
         <h3>Connect your bird house</h3>
 
         <div>

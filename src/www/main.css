@@ -57,6 +57,10 @@ img {
   padding: 2em;
 }
 
+.login-container {
+  padding: 2em;
+}
+
 .header {
   background-color: rgb(253, 65, 75);
   color: #fff;
