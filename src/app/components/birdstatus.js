@@ -40,7 +40,7 @@ class BirdStatus extends React.Component {
       "town grabbing some food",
       "an airplane and feeling lazy",
       "a sleepy mood",
-      "in your kitchen stealing your food"
+      "your kitchen stealing your food"
     ];
     let status = _.sample(defaultMessages);
     if(name && location) {
